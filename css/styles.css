@@ -1065,3 +1065,226 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: 0.01
 .load-error { max-width: 520px; margin: 40px auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .load-error h2 { font-size: 32px; }
 .load-error p { margin: 0; color: var(--muted); line-height: 1.6; }
+
+@media (max-width: 1100px) {
+  .game-layout, .roulette-layout { grid-template-columns: minmax(0, 1fr); gap: 22px; }
+  .game-layout > *, .roulette-layout > *, .controls > *, .panel { min-width: 0; }
+  .controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .controls > .panel:first-child { grid-row: span 2; }
+  .btn, .btn.small, .seg button, .runner-pick, .shop-ticket, .rt-cell { min-height: 44px; }
+  .nav a, .icon-btn { min-width: 44px; height: 44px; }
+  .btn, .nav a, .icon-btn, .chip-btn, .seg button, .cabinet, .perk-card, .pk-slot, .kn, .mine-tile, .runner-pick, .shop-ticket { touch-action: manipulation; }
+  .chip-btn { width: 100%; max-width: 64px; min-height: 44px; justify-self: center; }
+  .stage { min-height: 380px; }
+  .scratch-stage, .slots-stage, .wheel-stage, .plinko-stage, .mines-stage, .roulette-stage, .keno-stage, .mystery-stage, .race-stage { min-height: 0; }
+  .scratch-stage { padding-top: 80px; }
+  .slots-stage { padding-top: 76px; }
+  .wheel-stage { padding-top: 80px; }
+  .plinko-canvas { max-width: 100%; }
+  .crash-stage { height: 380px; }
+  .crash-history { left: 12px; flex-wrap: wrap; justify-content: flex-end; }
+  .rt-scroll, .odds-wrap { min-width: 0; overscroll-behavior-x: contain; }
+  .rt-table { grid-template-columns: 46px repeat(12, minmax(44px, 1fr)) 46px; grid-template-rows: repeat(5, 44px); }
+  .odds-table { min-width: 560px; }
+  .summary-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .summary-stats .card { width: auto; height: auto; min-width: 0; overflow-wrap: anywhere; }
+  .perk-back, .modal-back { overflow-y: auto; overscroll-behavior: contain; }
+  .perk-back { justify-content: safe center; padding: 28px 20px 36px; }
+  .perk-cards { flex: none; width: 100%; }
+  .modal { max-height: 100%; overflow-y: auto; }
+}
+
+@media (max-width: 600px) {
+  .topbar { gap: 8px; padding: 8px 12px 12px; padding-top: max(8px, env(safe-area-inset-top)); }
+  .logo { font-size: 23px; gap: 6px; flex: none; }
+  .logo-chip { width: 28px; height: 28px; }
+  .nav { gap: 6px; }
+  .nav a { padding: 0 10px; font-size: 15px; }
+  #app { padding: 22px 12px max(36px, env(safe-area-inset-bottom)); }
+  .hud { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 0 12px 14px; }
+  .hud > * { min-width: 0; }
+  .pill { height: 48px; padding: 0 8px; gap: 6px; border-radius: 12px; }
+  .pill.money, .pill.luck { grid-column: span 2; }
+  .pill.money b { min-width: 0; font-size: clamp(20px, 6vw, 24px); overflow-wrap: anywhere; }
+  .pill.money > div { min-width: 0; }
+  .coin-icon { width: 22px; height: 22px; }
+  .mode-chip { font-size: 11px; padding: 1px 5px; }
+  .pill.luck { justify-content: center; }
+  .luck-meter { width: 76px; }
+  .pill small { font-size: 9px; letter-spacing: 0.02em; }
+  .pill b, .pill.clock b { font-size: 21px; }
+  .pill.clock > div { width: auto; }
+  .pill.clock { justify-content: center; }
+  .pill.debt { grid-column: span 2; min-width: 0; max-width: none; gap: 5px; }
+  .pill.debt small { line-height: 1.25; }
+  .perk-row { grid-column: 1 / -1; grid-row: 3; gap: 9px; padding: 2px 4px 5px; }
+  .hud-actions { grid-column: 1 / -1; width: auto; margin: 0; gap: 8px; }
+  .hud-actions .btn { display: flex; align-items: center; justify-content: center; padding: 8px; text-decoration: none; }
+  .hud-actions [hidden] { display: none; }
+  .hud[data-mode="free"] .hud-actions { grid-column: 3 / 5; grid-row: 2; }
+  .hud[data-mode="free"] .perk-row { grid-column: 1 / 3; grid-row: 2; }
+  .title-screen { min-height: calc(100svh - 120px); gap: 24px; padding: 16px 4px 8px; }
+  .title-logo { white-space: nowrap; font-size: clamp(64px, 18vw, 108px); -webkit-text-stroke-width: 9px; margin: 0 0 8px; }
+  .mode-picks { grid-template-columns: minmax(0, 1fr); gap: 20px; margin-top: 0; }
+  .mode-btn { padding: 18px; gap: 8px; border-radius: 20px; }
+  .mode-btn strong { font-size: 36px; }
+  .mode-btn span { font-size: 14px; }
+  .sticker-note { width: 100%; padding: 12px; font-size: 13px; }
+  .floor-head { gap: 10px; margin-bottom: 22px; }
+  .floor-head h1 { font-size: 46px; }
+  .count-chip { font-size: 14px; padding: 6px 8px; }
+  .zone { margin-bottom: 30px; }
+  .zone-sign { max-width: calc(100% - 4px); flex-wrap: wrap; gap: 4px 10px; padding: 8px 12px; margin: 0 2px 16px; }
+  .zone-sign h2 { font-size: 22px; }
+  .zone-sign span { font-size: 12px; }
+  .cabinets { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 12px; }
+  .cabinet { min-width: 0; padding: 8px 8px 10px; border-radius: 18px 18px 12px 12px; }
+  .cabinet .screen { height: 84px; font-size: 46px; }
+  .cabinet h3 { font-size: 21px; line-height: 1.1; }
+  .cabinet p { font-size: 12px; margin-top: 3px; }
+  .cabinet .plaque { margin-top: auto; padding: 5px 8px; font-size: 14px; }
+  .cabinet p + .plaque { margin-top: 10px; }
+  .cabinet .tape { left: -4px; right: -4px; top: 38px; font-size: 13px; letter-spacing: 0.05em; }
+  .game-head { gap: 10px; margin-bottom: 16px; }
+  .game-head h1 { font-size: clamp(30px, 8vw, 40px); }
+  .game-head .back { display: inline-flex; align-items: center; padding: 6px 10px; }
+  .game-layout, .roulette-layout { gap: 20px; }
+  .controls { display: flex; align-items: stretch; gap: 14px; }
+  .controls .panel { padding: 14px; gap: 12px; }
+  .stage { min-height: 340px; border-radius: 20px; }
+  .btn.big { font-size: 22px; padding: 12px 16px; }
+  .bet-input { min-height: 52px; }
+  .chips, .chip-picker { gap: 10px; padding: 2px 0 4px; }
+  .chip-btn { max-width: 58px; }
+  .seg { gap: 8px; }
+  .seg button { padding: 8px 4px; font-size: 16px; }
+  .stat { min-width: 0; padding: 10px; overflow-wrap: anywhere; }
+  .result-banner { top: 24px; width: 82%; white-space: normal; text-align: center; line-height: 1; font-size: clamp(24px, 7vw, 32px); -webkit-text-stroke-width: 7px; }
+  .coin-scene { padding: 150px 0 22px; gap: 18px; width: 100%; }
+  .coin-toss { width: 130px; height: 130px; }
+  .coin-face { font-size: 58px; }
+  .pot { max-width: 100%; padding: 8px 14px; }
+  .pot b { font-size: 30px; overflow-wrap: anywhere; }
+  .scratch-stage { min-height: 320px; padding: 72px 22px 26px; }
+  .ticket { padding: 10px; }
+  .ticket-head h3 { font-size: 25px; }
+  .ticket-head span { padding: 3px 7px; font-size: 18px; }
+  .ticket-grid { gap: 6px; }
+  .ticket-grid .sym { max-width: 80%; height: auto; }
+  .ticket-sub { font-size: 11px; }
+  .ticket-foot { gap: 4px 7px; }
+  .ticket-foot span { font-size: 12px; }
+  .slots-stage { min-height: 0; padding: 70px 12px 24px; }
+  .slot-rig { width: 100%; max-width: 330px; }
+  .slot-machine { width: 100%; padding: 10px 10px 14px; }
+  .marquee { padding: 8px; margin: 0 0 10px; }
+  .marquee h3 { font-size: clamp(24px, 7vw, 30px); }
+  .reel-window { gap: 6px; padding: 6px; }
+  .reel { width: 0; min-width: 0; flex: 1; }
+  .slot-cell .sym { max-width: 90%; }
+  .slot-tray { width: 88%; letter-spacing: 0.06em; }
+  .wheel-stage { min-height: 0; padding: 76px 16px 20px; }
+  .wheel-stand { height: 54px; margin-top: -42px; }
+  .plinko-stage { min-height: 0; padding: 64px 16px 20px; }
+  .mines-stage { min-height: 0; padding: 66px 16px 24px; }
+  .mine-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+  .mine-tile { min-width: 0; min-height: 44px; padding: 3px; border-width: 3px; border-radius: 10px; }
+  .mine-tile .sym { width: 100%; height: auto; max-width: 40px; }
+  .dice-stage { min-height: 310px; padding: 62px 32px 22px; gap: 18px; }
+  .dice-roll { font-size: 52px; }
+  .dice-knob { height: 44px; }
+  .crash-stage { min-height: 320px; height: 320px; }
+  .crash-rocket { transform: translate(18px, 248px); }
+  .crash-note { padding: 0 12px; font-size: 13px; }
+  .crash-history { gap: 4px; }
+  .crash-history span { font-size: 12px; padding: 3px 6px; }
+  .roulette-stage { min-height: 0; padding: 66px 12px 18px; gap: 14px; }
+  .rt-scroll { padding: 8px 0 10px; }
+  .rt-actions .btn { padding: 6px 4px; }
+  .hilo-stage { min-height: 0; padding: 70px 24px 24px; gap: 18px; }
+  .hilo-table { gap: 24px; }
+  .hilo-table .card, .hilo-table .deck, .hilo-table .card-slot { width: 108px; height: 152px; }
+  .hilo-table .card .pip { font-size: 54px; }
+  .hilo-table .card .corner { font-size: 22px; }
+  .hilo-table .card.back span { font-size: 42px; }
+  .bj-stage { min-height: 0; padding: 70px 16px 22px; gap: 14px; }
+  .shoe { top: 18px; right: 18px; }
+  .shoe .card { width: 44px; height: 62px; }
+  .shoe .card.back span { font-size: 24px; }
+  .shoe .card.back::before { inset: 4px; }
+  .bj-hand { min-height: 112px; max-width: 100%; }
+  .bj-hand .card { width: 76px; height: 108px; }
+  .bj-hand .card + .card { margin-left: -46px; }
+  .bj-hand .card .corner { font-size: 18px; }
+  .bj-hand .card .corner i { font-size: 13px; }
+  .bj-hand .card .tl { top: 6px; left: 5px; }
+  .bj-hand .card .br { bottom: 6px; right: 5px; }
+  .bj-hand .card .pip { font-size: 36px; }
+  .bj-hands { gap: 12px; width: 100%; }
+  .bj-hand-wrap { max-width: 100%; padding: 6px; }
+  .poker-stage { min-height: 0; padding: 68px 16px 22px; gap: 18px; }
+  .paytable-board { gap: 4px 6px; padding: 8px 4px; }
+  .pt-row { font-size: 12px; gap: 4px; padding: 3px 4px; align-items: center; }
+  .pt-row b { flex: none; }
+  .poker-hand { width: 100%; flex-wrap: nowrap; gap: 5px; min-height: 0; padding-top: 18px; }
+  .pk-slot { flex: 1; min-width: 0; gap: 8px; }
+  .pk-slot .card { width: 100%; height: auto; aspect-ratio: 104 / 146; border-width: 3px; border-radius: 8px; }
+  .pk-slot .card .pip { font-size: 28px; }
+  .pk-slot .card .corner { font-size: 14px; }
+  .pk-slot .card .corner i { font-size: 10px; }
+  .pk-slot .card .tl { top: 4px; left: 4px; }
+  .pk-slot .card .br { bottom: 4px; right: 4px; }
+  .pk-slot .card.back span { font-size: 26px; -webkit-text-stroke-width: 4px; }
+  .pk-slot .card.back::before { inset: 5px; border-width: 2px; }
+  .pk-slot.held .card { outline-width: 3px; outline-offset: 0; }
+  .held-tag { padding: 2px 3px; font-size: 11px; }
+  .poker-hint { font-size: 13px; }
+  .race-stage { min-height: 0; padding: 66px 14px 20px; }
+  .race-call { font-size: 17px; max-width: 100%; }
+  .runner-pick { grid-template-columns: 28px minmax(0, 1fr) auto; padding: 8px; }
+  .runner-pick span { font-size: 13px; }
+  .keno-stage { min-height: 0; padding: 66px 16px 22px; }
+  .keno-board { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; max-width: 360px; }
+  .kn { min-width: 0; min-height: 44px; padding: 0; font-size: 17px; border-radius: 10px; }
+  .keno-tray { width: 100%; min-width: 0; gap: 5px; padding: 6px; border-radius: 16px; }
+  .kball { width: 32px; height: 32px; font-size: 14px; }
+  .mystery-stage { min-height: 0; padding: 68px 14px 24px; gap: 16px; }
+  .box-wrap { width: 104px; height: 104px; }
+  .prize-card { max-width: 100%; padding: 10px; gap: 8px; }
+  .prize-card b { font-size: 28px; }
+  .hustle-stage { min-height: 330px; touch-action: pan-y; }
+  .shift-over .btn { text-decoration: none; }
+  .perk-back { padding: 24px 16px 36px; gap: 20px; }
+  .perk-title { flex: none; max-width: 100%; font-size: 38px; line-height: 1.05; -webkit-text-stroke-width: 8px; }
+  .perk-cards { flex-direction: column; align-items: center; gap: 16px; }
+  .perk-card { width: 100%; max-width: 380px; min-height: 0; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 6px 14px; text-align: left; align-items: center; padding: 14px; border-top-width: 8px; }
+  .perk-glyph { grid-row: span 3; width: 64px; height: 64px; }
+  .perk-glyph .perk-icon { width: 52px; height: 52px; }
+  .perk-card strong { font-size: 23px; }
+  .perk-desc { font-size: 13px; }
+  .perk-card small { font-size: 10px; }
+  .summary-head { margin-bottom: 22px; gap: 12px; }
+  .stamp { max-width: 100%; font-size: clamp(40px, 11vw, 64px); line-height: 1; margin: 8px 0 16px; -webkit-text-stroke-width: 8px; }
+  .summary-head p { font-size: 15px; line-height: 1.5; }
+  .summary-meta { gap: 6px; }
+  .summary-meta span { font-size: 12px; padding: 4px 8px; }
+  .summary-stats { gap: 12px; }
+  .summary-stats .card { padding: 12px; }
+  .summary-stats .card b { font-size: clamp(22px, 6vw, 28px); }
+  .summary-stats .card span { font-size: 10px; }
+  .summary-stats .card small { line-height: 1.4; }
+  .chart-panel { padding: 14px 10px 8px; }
+  .legend { gap: 8px; font-size: 11px; }
+  .chart { padding: 8px 0 0; }
+  .chart .tooltip { left: 8px !important; right: 8px; top: 8px !important; white-space: normal; }
+  .summary-actions { flex-direction: column; gap: 14px; }
+  .support h1 { font-size: 42px; }
+  .support h2 { font-size: 27px; margin-top: 30px; }
+  .support .intro { padding: 14px; }
+  .support p, .support li { font-size: 15px; }
+  .resources { grid-template-columns: minmax(0, 1fr); }
+  .odds-wrap { padding: 6px 12px; }
+  #toasts { bottom: max(16px, env(safe-area-inset-bottom)); }
+  .toast { max-width: 100%; font-size: 14px; }
+  .modal .row .btn { flex: 1; }
+}

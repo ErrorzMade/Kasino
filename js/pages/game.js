@@ -29,9 +29,23 @@ export function renderGame(root, route) {
     payout,
     roundSettled,
   };
-  game.load().then((mod) => {
-    if (!disposed) gameCleanup = mod.mount(mountPoint, ctx) || null;
-  });
+  game
+    .load()
+    .then((mod) => {
+      if (!disposed) gameCleanup = mod.mount(mountPoint, ctx) || null;
+    })
+    .catch(() => {
+      if (disposed) return;
+      mountPoint.append(
+        h(`
+        <div class="panel load-error">
+          <h2>${game.name} didn’t load</h2>
+          <p>The game files couldn’t be fetched. Check your connection and refresh. Your run is saved.</p>
+          <button class="btn gold" data-act="reload">Refresh</button>
+        </div>`)
+      );
+      mountPoint.querySelector('[data-act=reload]').addEventListener('click', () => location.reload());
+    });
   return () => {
     disposed = true;
     gameCleanup?.();

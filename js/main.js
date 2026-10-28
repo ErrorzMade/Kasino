@@ -11,6 +11,7 @@ import { renderOver } from './pages/over.js';
 import { renderSupport } from './pages/support.js';
 import { renderHustle } from './pages/hustle.js';
 import { maybeOfferPerk, perkChips } from './perks.js';
+import { GAMES } from './games/registry.js';
 
 const app = $('#app');
 const hud = $('#hud');
@@ -252,3 +253,7 @@ muteBtn.addEventListener('click', () => {
 renderMute();
 
 render();
+
+const preload = () => GAMES.filter((g) => g.ready).forEach((g) => g.load().catch(() => {}));
+if ('requestIdleCallback' in window) requestIdleCallback(preload);
+else setTimeout(preload, 1500);

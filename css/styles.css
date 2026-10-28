@@ -1066,7 +1066,7 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: 0.01
 .load-error h2 { font-size: 32px; }
 .load-error p { margin: 0; color: var(--muted); line-height: 1.6; }
 
-@media (max-width: 1100px) {
+@media (max-width: 860px) {
   .game-layout, .roulette-layout { grid-template-columns: minmax(0, 1fr); gap: 22px; }
   .game-layout > *, .roulette-layout > *, .controls > *, .panel { min-width: 0; }
   .controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
@@ -1287,4 +1287,161 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; letter-spacing: 0.01
   #toasts { bottom: max(16px, env(safe-area-inset-bottom)); }
   .toast { max-width: 100%; font-size: 14px; }
   .modal .row .btn { flex: 1; }
+}
+
+.hud-more { display: none; }
+
+@media (max-width: 600px) {
+  .topbar { height: auto; min-height: 52px; padding: 6px 10px; padding-top: max(6px, env(safe-area-inset-top)); }
+  .logo { font-size: 21px; }
+  .logo-chip { width: 26px; height: 26px; font-size: 14px; }
+  .nav a, .icon-btn { height: 40px; min-width: 40px; font-size: 14px; padding: 0 10px; }
+  .icon-btn { padding: 0; }
+
+  #hud { position: sticky; top: var(--topbar-h, 52px); z-index: 19; }
+  .hud { display: flex; flex-wrap: nowrap; align-items: center; gap: 6px; padding: 4px 10px 8px; }
+  .hud > * { flex: none; min-width: 0; }
+  .hud .pill { height: 42px; padding: 0 8px; gap: 6px; border-radius: 11px; box-shadow: 0 3px 0 #000; }
+  .hud .pill.money { flex: 1 1 auto; order: 1; }
+  .hud .pill.money .coin-icon, .hud .pill.money small { display: none; }
+  .hud .pill.money b { min-width: 0; font-size: 21px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .hud .pill.money > div { min-width: 0; }
+  .hud .pill.clock { order: 2; justify-content: center; }
+  .hud .pill.clock > div { width: 50px; }
+  .hud .pill.clock small { font-size: 8px; }
+  .hud .pill.clock b { font-size: 19px; }
+  .hud .pill.luck { order: 3; padding: 0 7px; gap: 4px; }
+  .hud .pill.luck .sym { width: 20px; height: 20px; }
+  .hud .pill.luck small { font-size: 0; }
+  .hud .pill.luck small span { font-size: 12px; }
+  .hud .pill.luck .luck-meter { display: none; }
+  .hud-actions { order: 4; display: flex; gap: 6px; margin: 0; width: auto; }
+  .hud-actions .btn { min-height: 42px; padding: 0 9px; font-size: 13px; display: inline-flex; align-items: center; text-decoration: none; }
+  .hud-actions [hidden], #hud-quit { display: none; }
+  .hud-due, .hud .pill.debt, .hud .perk-row { display: none; }
+  .hud:not(.open):has(#hud-hustle:not([hidden])) .pill.luck { display: none; }
+  .hud-more {
+    order: 5; display: grid; place-items: center; align-content: center; gap: 3px;
+    width: 40px; height: 42px; border-radius: 11px; background: var(--panel); border: var(--line) solid #000; box-shadow: 0 3px 0 #000;
+  }
+  .hud-more i { display: block; width: 16px; height: 3px; border-radius: 2px; background: var(--text); transition: transform .2s, opacity .2s; }
+  .hud.open .hud-more i:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .hud.open .hud-more i:nth-child(2) { opacity: 0; }
+  .hud.open .hud-more i:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .hud.open { flex-wrap: wrap; row-gap: 8px; }
+  .hud.open .pill.money small { display: block; }
+  .hud.open .hud-due { display: flex; order: 6; }
+  .hud.open .pill.debt { display: flex; order: 7; flex: 1 1 0; max-width: none; height: 42px; }
+  .hud.open .pill.debt small { font-size: 9px; }
+  .hud.open .pill.luck .luck-meter { display: block; width: 54px; }
+  .hud.open .perk-row { display: flex; order: 8; width: 100%; padding: 2px 0; }
+  .hud.open .hud-actions { order: 9; width: 100%; }
+  .hud.open .hud-actions .btn { flex: 1; justify-content: center; }
+  .hud.open #hud-quit { display: inline-flex; }
+
+  #app { padding: 10px 10px 24px; }
+  .game-head { flex-wrap: nowrap; gap: 10px; margin-bottom: 8px; height: 40px; }
+  .game-head h1 { font-size: 26px; -webkit-text-stroke-width: 5px; text-shadow: 0 3px 0 var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .game-head .back { min-height: 36px; padding: 4px 10px; font-size: 14px; }
+
+  .game-layout, .roulette-layout { display: flex; flex-direction: column; align-items: stretch; gap: 10px; }
+  .controls { display: contents; }
+  .game-layout > .stage, .roulette-layout > .stage {
+    height: calc(100dvh - var(--topbar-h, 52px) - var(--hud-h, 0px) - var(--bar-h, 0px) - 78px);
+    min-height: 280px; padding-top: 52px; padding-bottom: 12px; border-radius: 18px;
+  }
+  .controls > .panel:first-child {
+    position: sticky; bottom: 0; z-index: 15; order: 1;
+    margin: 0 -10px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); gap: 8px;
+    border-radius: 18px 18px 0 0; border-bottom: none; box-shadow: 0 -4px 0 var(--ink);
+  }
+  .controls > .panel:not(:first-child) { order: 2; }
+  .controls > .panel:first-child > .label { display: none; }
+  .controls > .panel:first-child > .label:has(+ .auto-input) { display: block; }
+  .hint { display: none; }
+  .result-banner { top: 12px; font-size: clamp(22px, 7vw, 30px); }
+
+  .bet { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 6px 8px; }
+  .bet > .hud-label { display: none; }
+  .bet-input { min-height: 44px; padding: 4px 10px; font-size: 22px; }
+  .bet .chips { grid-template-columns: repeat(4, 38px); gap: 5px; padding: 0; }
+  .bet .chip-btn { width: 38px; height: 38px; min-height: 38px; max-width: none; font-size: 12px; outline-offset: -7px; box-shadow: 0 3px 0 var(--ink); }
+  .bet-note { display: none; grid-column: 1 / -1; min-height: 0; }
+  .bet-note.err { display: block; }
+  .seg button { min-height: 40px; padding: 6px 4px; font-size: 15px; }
+  .controls .btn.big { min-height: 52px; padding: 10px; font-size: 20px; }
+
+  .shop, .box-shop { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+  .shop-ticket { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: 2px; padding: 6px 4px; min-height: 0; }
+  .shop-ticket b { font-size: 13px; -webkit-text-stroke-width: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+  .shop-ticket span { grid-row: auto; font-size: 15px; padding: 1px 8px; }
+  .shop-ticket small { display: none; }
+  .runners { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
+  .runner-pick { grid-template-columns: 22px minmax(0, 1fr) auto; gap: 5px; padding: 4px 6px; min-height: 36px; }
+  .runner-pick i { width: 20px; height: 20px; font-size: 12px; }
+  .runner-pick span { font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .runner-pick b { font-size: 13px; }
+  .hilo-calls { grid-template-columns: 1fr 1fr; gap: 6px; }
+  .hilo-calls .btn { flex-direction: column; gap: 0; padding: 6px; font-size: 15px; min-height: 52px; }
+  .bj-actions { grid-template-columns: repeat(4, 1fr); gap: 5px; }
+  .bj-actions .btn { padding: 8px 2px; font-size: 14px; }
+  .keno-tools { gap: 6px; }
+  .chip-picker { grid-template-columns: repeat(4, 44px); justify-content: center; gap: 10px; }
+  .chip-picker .chip-btn { width: 44px; height: 44px; }
+  .rt-total { padding: 4px 10px; }
+  .rt-total b { font-size: 20px; }
+  .rt-actions .btn { min-height: 38px; }
+  .auto-input { min-height: 40px; font-size: 18px; }
+
+  .floor-head { margin-bottom: 14px; }
+  .floor-head h1 { font-size: 34px; -webkit-text-stroke-width: 6px; text-shadow: 0 4px 0 var(--ink); }
+  .count-chip { font-size: 12px; }
+  .zone { margin-bottom: 22px; }
+  .zone-sign { margin-bottom: 12px; padding: 6px 12px; }
+  .zone-sign h2 { font-size: 18px; }
+  .zone-sign span { font-size: 11px; }
+  .cabinets { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 10px; }
+  .cabinet {
+    display: grid; grid-template-columns: 50px minmax(0, 1fr); grid-template-rows: auto auto; column-gap: 9px; align-items: center;
+    padding: 7px 8px 7px 7px; border-width: 3px; border-radius: 14px; box-shadow: 0 5px 0 var(--ink); overflow: hidden;
+  }
+  .cabinet .screen { grid-row: span 2; width: 50px; height: 50px; font-size: 28px; border-radius: 10px; }
+  .cabinet h3 { font-size: 15px; -webkit-text-stroke-width: 4px; margin: 0; line-height: 1.05; align-self: end; overflow-wrap: anywhere; }
+  .cabinet p { display: none; }
+  .cabinet .plaque, .cabinet p + .plaque { margin-top: 4px; padding: 2px 6px; font-size: 11px; align-self: start; justify-self: start; }
+  .cabinet .tape { top: 50%; left: -6px; right: -6px; margin-top: -10px; font-size: 9px; letter-spacing: 0.04em; padding: 2px 0; transform: rotate(-6deg); }
+  .cabinet.playable:hover .screen span { animation: none; }
+  .cabinet.hustle { max-width: none; }
+
+  .coin-scene { padding: 96px 0 8px; gap: 14px; }
+  .coin-toss { width: 120px; height: 120px; }
+  .coin-face { font-size: 54px; }
+  .coin-shadow { width: 100px; }
+  .streak i { width: 24px; height: 24px; font-size: 12px; }
+  .keno-board { grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 5px; max-width: none; }
+  .kn { min-height: 0; aspect-ratio: 1; font-size: 14px; border-width: 2px; border-radius: 8px; box-shadow: 0 3px 0 var(--ink); }
+  .keno-tray { min-height: 40px; }
+  .kball { width: 28px; height: 28px; font-size: 12px; }
+  .roulette-layout > .stage { height: auto; min-height: 0; }
+  .race-stage { gap: 8px; padding-top: 46px; }
+  .race-call { font-size: 14px; padding: 4px 10px; }
+  .lane { height: 44px; }
+  .runner { top: 2px; width: 54px; }
+  .horse { width: 54px; height: 40px; }
+  .lane-n { width: 20px; height: 20px; margin-top: -10px; font-size: 12px; }
+  .rw-wrap { width: min(100%, 210px); }
+  .rw-result { width: 56px; height: 56px; margin: -28px 0 0 -28px; font-size: 26px; }
+}
+
+@media (max-width: 600px) {
+  @keyframes toss {
+    0% { transform: translateY(0) scale(1, 1); }
+    6% { transform: translateY(6px) scale(1.12, 0.86); }
+    45% { transform: translateY(-86px) scale(1.12); }
+    84% { transform: translateY(0) scale(1); }
+    88% { transform: translateY(0) scale(1.14, 0.84); }
+    94% { transform: translateY(-10px) scale(0.96, 1.05); }
+    100% { transform: translateY(0) scale(1); }
+  }
 }

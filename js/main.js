@@ -81,7 +81,7 @@ function renderHud() {
         <div class="perk-row" id="hud-perks"></div>
         ${
           run.mode === 'standard'
-            ? `<div class="pill"><div><small id="hud-due-label"></small><b id="hud-due"></b></div></div>
+            ? `<div class="pill hud-due"><div><small id="hud-due-label"></small><b id="hud-due"></b></div></div>
                <div class="pill clock" id="hud-clock-pill"><div><small>Due in</small><b id="hud-clock"></b></div></div>
                <div class="pill debt">
                  <small id="hud-paid"></small>
@@ -93,8 +93,14 @@ function renderHud() {
           ${run.mode === 'standard' ? '<a class="btn small gold" id="hud-hustle" href="#/hustle" hidden>Hustle</a><button class="btn small win" id="hud-pay">Pay now</button>' : ''}
           <button class="btn small ghost" id="hud-quit">End run</button>
         </div>
+        <button class="hud-more" id="hud-more" aria-expanded="false" aria-label="Show run details"><i></i><i></i><i></i></button>
       </div>`)
     );
+    $('#hud-more').addEventListener('click', (e) => {
+      const open = hud.firstElementChild.classList.toggle('open');
+      e.currentTarget.setAttribute('aria-expanded', open);
+      sfx.click();
+    });
     $('#hud-pay')?.addEventListener('click', () => {
       const due = currentInstallment();
       if (due && payInstallment()) celebratePayment(due.amount);
@@ -257,3 +263,24 @@ render();
 const preload = () => GAMES.filter((g) => g.ready).forEach((g) => g.load().catch(() => {}));
 if ('requestIdleCallback' in window) requestIdleCallback(preload);
 else setTimeout(preload, 1500);
+
+const mobile = matchMedia('(max-width: 600px)');
+const rootStyle = document.documentElement.style;
+let barObserved = null;
+function measureLayout() {
+  rootStyle.setProperty('--topbar-h', `${$('.topbar').offsetHeight}px`);
+  rootStyle.setProperty('--hud-h', `${hud.offsetHeight}px`);
+  const bar = document.querySelector('.controls > .panel:first-child');
+  rootStyle.setProperty('--bar-h', `${bar && mobile.matches ? bar.offsetHeight : 0}px`);
+  if (bar !== barObserved) {
+    if (barObserved) layoutObserver.unobserve(barObserved);
+    if (bar) layoutObserver.observe(bar);
+    barObserved = bar;
+  }
+}
+const layoutObserver = new ResizeObserver(measureLayout);
+layoutObserver.observe($('.topbar'));
+layoutObserver.observe(hud);
+new MutationObserver(() => document.querySelector('.controls > .panel:first-child') !== barObserved && measureLayout()).observe(app, { childList: true, subtree: true });
+mobile.addEventListener('change', measureLayout);
+measureLayout();

@@ -1,0 +1,9 @@
+{
+  "name": "kasino",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A free, no-real-money gambling game. Nothing can be bought or cashed out.",
+  "scripts": {
+    "start": "node serve.js"
+  }
+}
